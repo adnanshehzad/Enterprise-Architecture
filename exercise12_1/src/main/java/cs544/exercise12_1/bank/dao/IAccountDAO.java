@@ -1,9 +1,8 @@
 package cs544.exercise12_1.bank.dao;
 
-import java.util.Collection;
-
 import cs544.exercise12_1.bank.domain.Account;
 
+import java.util.Collection;
 
 
 public interface IAccountDAO {

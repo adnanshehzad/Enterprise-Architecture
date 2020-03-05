@@ -1,7 +1,5 @@
 package cs544.exercise12_1.bank.service;
 
-import java.util.Collection;
-
 import cs544.exercise12_1.bank.dao.AccountDAO;
 import cs544.exercise12_1.bank.dao.IAccountDAO;
 import cs544.exercise12_1.bank.domain.Account;
@@ -10,23 +8,27 @@ import cs544.exercise12_1.bank.jms.IJMSSender;
 import cs544.exercise12_1.bank.jms.JMSSender;
 import cs544.exercise12_1.bank.logging.ILogger;
 import cs544.exercise12_1.bank.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-
-
-
-
+import java.util.Collection;
+@Service
 public class AccountService implements IAccountService {
+	@Autowired
 	private IAccountDAO accountDAO;
+	@Autowired
 	private ICurrencyConverter currencyConverter;
+	@Autowired
 	private IJMSSender jmsSender;
+	@Autowired
 	private ILogger logger;
 	
 	public AccountService(){
-		accountDAO=new AccountDAO();
-		currencyConverter= new CurrencyConverter();
-		jmsSender =  new JMSSender();
-		logger = new Logger();
+
 	}
+
 
 	public Account createAccount(long accountNumber, String customerName) {
 		Account account = new Account(accountNumber);
@@ -93,4 +95,5 @@ public class AccountService implements IAccountService {
 			jmsSender.sendJMSMessage("TransferFunds of $ "+amount+" from account with accountNumber= "+fromAccount+" to account with accountNumber= "+toAccount);
 		}
 	}
+
 }

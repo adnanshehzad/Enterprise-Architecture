@@ -1,10 +1,13 @@
 package cs544.exercise12_1.bank.dao;
 
+import cs544.exercise12_1.bank.domain.Account;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 
-import cs544.exercise12_1.bank.domain.Account;
-
-public class AccountDAO implements IAccountDAO {
+@Component
+public  class AccountDAO implements IAccountDAO {
 	Collection<Account> accountlist = new ArrayList<Account>();
 
 	public void saveAccount(Account account) {
