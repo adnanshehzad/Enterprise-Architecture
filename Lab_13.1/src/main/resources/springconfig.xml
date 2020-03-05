@@ -9,6 +9,9 @@
      http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<aop:aspectj-autoproxy/>
+
+	<bean id="logAspect" class="cs544.exercise13_1.aspect.LogManagement"/>
+
 	<bean id="customerService" class="cs544.exercise13_1.CustomerService">
 		<property name="customerDAO" ref="customerDAO" />
 		<property name="emailSender" ref="emailSender" />
