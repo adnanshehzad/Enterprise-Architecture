@@ -1,26 +1,30 @@
-package cs544.exercise19_1;
+package cs544.exercise19;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import cs544.exercise19_1.IBookDao;
 import cs544.sample.NoSuchResourceException;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class BookDao implements IBookDao {
 	private static int idCount = 1;
 	private Map<Integer, Book> books = new HashMap<>();
 	
 	public BookDao() {
-		add(new Book());
-		add(new Book());
+		add(new Book("Java","ds232d","Payman Salek",89.0));
+		add(new Book("C++","ad2323","Adnna Shehzad",1000.0));
 	}
 	
 	@Override
 	public List<Book> getAll() {
 		return new ArrayList<Book>(books.values());
 	}
+
 	
+
 	@Override
 	public void add(Book book) {
 		book.setId(idCount);
@@ -39,6 +43,7 @@ public class BookDao implements IBookDao {
 		return result;
 	}
 	
+
 	@Override
 	public void update(int bookId, Book book) {
 		books.put(bookId, book);
